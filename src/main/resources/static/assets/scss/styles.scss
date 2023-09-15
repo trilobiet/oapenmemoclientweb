@@ -1,0 +1,25 @@
+@import "compass/css3";
+@import "compass";
+
+body {
+	background: #fff;
+}
+
+main.oapen-main {
+	min-height: 60vh;
+}
+
+.content table {
+	
+	margin: 1em 0;
+
+	thead th {
+		background: #aaa;
+		color: #fff;
+	}
+}
+
+.memo-hdr-title {
+	font-family: "Roboto Condensed";
+	font-size: 1.6em;
+}

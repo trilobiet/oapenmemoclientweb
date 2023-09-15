@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+
+	<meta charset="utf-8"/>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">OAPEN</title>
+	
+	<link rel="stylesheet" href="https://oapen.org/static-assets/css/styles.css?v=1.18"/>
+	<link rel="stylesheet" href="https://oapen.org/static-assets/css/contenttypes.css?v=1.18"/>
+	<link rel="stylesheet" th:href="@{/assets/fontawesome-pro-5.12.1-web/css/all.min.css?v=1.06}"/>	
+
+	<link rel="stylesheet" th:href="@{/assets/css/styles.css?v=1.03}"/>
+	
+</head>
+
+<body>
+
+	<!--
+		HEADER
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<header id="OapenHeader">
+
+		<div class="container">
+
+			<!-- logo, search/deposit/join -->
+			<nav class="oapen-topnav" role="navigation">
+
+				<div class="level topnav">
+
+					<div class="level-left">
+
+						<a th:href="@{'/'}">
+							<img th:src="@{/assets/images/layout/oapenlogo 01 colour - open access.png}" width="150" alt="Logo Oapen" class="oapen-logo">
+						</a>
+
+					</div>
+
+					<div class="level-right">
+
+						<h3 class="memo-hdr-title">MEMO - Metadata Export Module for Open Access Books</h3>
+
+					</div>
+
+				</div>
+
+			</nav>
+
+		</div><!-- /container -->
+
+		<nav class="navbar oapen-mainnav" role="navigation">
+
+			<div class="container">
+
+				<div class="navbar-brand">
+
+					<!-- hamburger -->
+					<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
+						<span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span>
+					</a>
+
+				</div>
+
+				<div id="navbarMain" class="navbar-menu">
+
+					<ul class="navbar-start">
+
+						<li class="oapen-nav-dropdown">
+							<a th:href="@{'/'}" class="navbar-item">My exports</a>
+						</li>
+
+						<li class="oapen-nav-dropdown">
+							<a th:href="@{'/explainer'}" class="navbar-item">Explainer</a>
+						</li>
+
+					</ul>
+					
+					<ul class="navbar-end oapen-nav-right">
+
+						<li class="oapen-nav-dropdown">
+							<a th:href="@{'/logout'}" class="navbar-item">Sign out</a>
+						</li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+		</nav>
+
+	</header>
+
+	<!--
+		MAIN
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<main layout:fragment="content">
+
+
+	</main>
+
+
+	<!--
+		FOOTER
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<footer class="footer">
+
+		<div class="container">
+
+			<div class="content has-text-centered">
+
+				<div class="is-size-7">
+					<a href="https://www.trilobiet.nl">Website by Trilobiet</a>
+				</div>
+
+			</div>
+
+		</div>
+
+	</footer>
+
+	<!-- / Local version of the cdn scripts are available in static-assets/js/ in case the CDN disappears / -->
+
+	<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+	<script th:src="@{/assets/js/scripts.js?v=1.02}"></script>
+	<!-- /* Loaded locally <script src="https://kit.fontawesome.com/33a853ba11.js" crossorigin="anonymous"></script> */ -->
+	
+	
+	<!----------------------------------- 
+	Website by	 
+    _____     _ _       _     _      _   
+   |_   _| __(_) | ___ | |__ (_) ___| |_ 
+     | || '__| | |/ _ \| '_ \| |/ _ \ __|
+     | || |  | | | (_) | |_) | |  __/ |_ 
+     |_||_|  |_|_|\___/|_.__/|_|\___|\__|
+                                       	
+	2024 www.trilobiet.nl
+	------------------------------------>
+
+</body>
+</html>

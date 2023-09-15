@@ -1,0 +1,84 @@
+<!doctype html>
+<html layout:decorate="~{layout/main}"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+<head>
+    <title th:text="'OAPEN MEMO ' + ${user.name}">article title</title>
+</head>
+
+<body>
+
+	<main layout:fragment="content" class="oapen-main">
+	
+		<section class="section">
+	
+		   	<div class="container">
+		   	
+				<div class="content oapen-primary">
+		    
+			    	<h1 th:text="${user.name}">User name</h1>
+			    	
+			    	<h2>Metadata Exports</h2>
+			    	
+			    	<div class="table-container">
+				    	<table class="table is-bordered is-hoverable is-fullwidth">
+					    	<thead>
+					    		<tr>
+					    			<th>export</th>
+					    			<th>direct link</th>
+					    			<th>type</th>
+					    			<th>available since</th>
+					    			<th>next update</th>
+					    			<th>frequency</th>
+					    			<th>download</th>
+					    		</tr>
+					    	</thead>
+					    	<tbody>
+					    		<tr th:each="task: ${tasks}">
+					    			<td th:text="${task.fileName}">export</td>
+					    			<td><a th:href="${'/file/' + task.fileName}" target="_blank"></a></td>
+					    			<td th:text="${task.extension}">type</td>
+					    			<td><th:block th:if="${task.latestLog != null}" th:text="${task.latestLog.date}">available since</th:block></td>
+					    			<td><th:block th:if="${task.latestLog != null}" th:text="${task.nextUpdate}">next update</th:block></td>
+					    			<td th:text="${task.frequency}">frequency</td>
+					    			<td><a th:href="${'file/' + task.fileName + '?download'}"><i class="far fa-cloud-download-alt"></i></a></td>
+					    		</tr>
+							</tbody>	    		
+				    	</table>
+				    </div>	
+				    
+				</div>
+			
+			</div>
+			
+		</section>				    
+		    
+		<section class="section">
+	
+		   	<div class="container">
+
+		    	<div class="content">
+		    	
+		    		<p>
+						Metadata exports will be available until the next update, overwriting the previous version.
+						<br/>
+						Please schedule your downloads. Expired metadata exports are not kept in archive.
+					</p>	
+					<p>	
+						Direct links to exports contain your credentials and can be used to access export files
+						without signing in, to be used for instance for automated requests.
+					</p>
+					<p>						
+						Questions about these exports? Please contact supremedatachief@oapen.org
+					</p>
+						  
+		    	</div>
+		    	
+		    </div>		
+		    
+		</section>
+	    
+    </main>
+    
+  </body>
+</html>
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+  <head>
+    <title tiles:fragment="title">OAPEN MEMO Client Web</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
+    <style>
+    	html, body, body>div {
+    		height: 100%;
+    		font-family: Roboto, sans-serif;
+    	}
+    	table.wrapper {
+    		height: 100%;
+    		width: 100%;
+    		text-align: center;
+    	}
+    	table.wrapper>td {
+    		line-height: 2;
+    		background: #fff;
+    		vertical-align: middle;
+    		padding: .5em 1em;
+    	} 
+    	form {
+    		width: 25em;
+    		margin: auto;
+    		margin-bottom: 300px;
+    	}
+    	form div {
+			background: #f6f6f6;
+			border: solid 1px #ccc;
+			box-shadow: 0px 0px 6px 0px #0003;
+			padding: 2em;
+			margin: 2em 0;
+		}
+    	form table {
+			width: 100%;
+		}
+		form th {
+			text-align: right;
+		}
+    	form th, form td {
+    		line-height: 1.5;
+    		text-align: center;
+    		padding: .5em 1em;
+    	} 
+    	img.logo {
+    		width: 12em;
+    		margin: 50px;
+    	}
+    	.alert {
+    		color: red;	
+    	}
+    	.success {
+    		color: green;	
+    	}
+    	h2, h3 {
+    		line-height: 1.5;	
+    		margin: 0;
+    		color: #a43735;
+    	}
+    	button {
+    		padding:.5em 2em; 
+    		font-weight: bold;
+    	}
+    </style>
+  </head>
+  <body>
+    <div tiles:fragment="content">
+    	<table class="wrapper">
+    		<tr>
+    			<td>
+			        <form name="f" th:action="@{/login}" method="post">            
+			        	<img class="logo" src="https://oapen.org/static-assets/images/layout/oapenlogo_01_colour.jpg"/>  
+			        	<h2>OAPEN MEMO Client Web</h2>
+			        	<h3>for selected partners</h3>
+			        	<div> 
+			                <table>
+			                	<tr th:if="${param.error}">
+			                		<td colspan="2" class="alert">
+			                			Invalid login credentials.<br/>
+			                			Please correct, or contact the application manager at Oapen.
+			                		</td>
+			                	</tr>
+			                	<tr th:if="${param.msglogout}">
+			                		<td colspan="2" class="success">
+			                			You have been logged out.
+			                		</td>
+			                	</tr>
+			                	<tr>
+			                		<th>
+			                			<label for="username">Username</label>
+			                		</th>
+			                		<td>
+			                			<input type="text" id="username" name="username"/>
+			                		</td>
+			                	</tr>
+			                	<tr>
+			                		<th>
+			                			<label for="password">Password</label>
+			                		</th>
+			                		<td>
+			                			<input type="password" id="password" name="password"/>
+			                		</td>
+			                	</tr>
+			                	<tr>
+			                		<td colspan="2">
+			                			<button type="submit" class="btn">Log in</button>
+			                		</td>
+			                	</tr>
+			                </table>
+			             </div>   
+			        </form>
+    			</td>
+    		</tr>
+    	</table>
+    </div>
+  </body>
+</html>
+
