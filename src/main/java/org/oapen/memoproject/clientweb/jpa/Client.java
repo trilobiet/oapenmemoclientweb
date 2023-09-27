@@ -26,7 +26,7 @@ public class Client implements UserDetails, Serializable {
 	
 	@Id
     private String id;	
-	private String username, name;
+	private String username, name, accessKey;
 	
     @JsonProperty(access = Access.WRITE_ONLY) // exclude for display! 
 	private String password;

@@ -14,7 +14,7 @@
 	
 	<groupId>org.oapen.memoproject</groupId>
 	<artifactId>clientweb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.2</version>
 	<name>clientweb</name>
 	<description>Client directories for OAPEN MEMO project</description>
 	
@@ -90,10 +90,39 @@
 		    <version>1.18</version>
 		</dependency>		
 		
+		<!-- Contains Either<T,U> -->
+		<dependency>
+			<groupId>io.vavr</groupId>
+			<artifactId>vavr</artifactId>
+			<version>0.10.4</version>
+		</dependency>
+		
 	</dependencies>
-
-	<build>
 	
+    <profiles>
+    
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+        
+    </profiles>	
+		
+	
+	<build>
+		
 		<plugins>
 	
 			<plugin>
@@ -101,6 +130,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 			    	<addResources>true</addResources>
+			    	<executable>true</executable>
 				</configuration>
 			</plugin>
 	

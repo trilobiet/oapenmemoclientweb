@@ -20,11 +20,12 @@
 			    	<h2>Metadata Exports</h2>
 			    	
 			    	<div class="table-container">
+			    	
 				    	<table class="table is-bordered is-hoverable is-fullwidth">
 					    	<thead>
 					    		<tr>
 					    			<th>export</th>
-					    			<th>direct link</th>
+					    			<th>public link</th>
 					    			<th>type</th>
 					    			<th>available since</th>
 					    			<th>next update</th>
@@ -34,17 +35,53 @@
 					    	</thead>
 					    	<tbody>
 					    		<tr th:each="task: ${tasks}">
-					    			<td th:text="${task.fileName}">export</td>
-					    			<td><a th:href="${'/file/' + task.fileName}" target="_blank"></a></td>
-					    			<td th:text="${task.extension}">type</td>
-					    			<td><th:block th:if="${task.latestLog != null}" th:text="${task.latestLog.date}">available since</th:block></td>
-					    			<td><th:block th:if="${task.latestLog != null}" th:text="${task.nextUpdate}">next update</th:block></td>
-					    			<td th:text="${task.frequency}">frequency</td>
-					    			<td><a th:href="${'file/' + task.fileName + '?download'}"><i class="far fa-cloud-download-alt"></i></a></td>
+					    			<td>
+					    				<!-- / *th:href="${'/file/' + task.path}+${task.public?'':'?key='+user.accessKey}" */ -->
+					    				<a th:text="${task.fileName}"
+					    				   th:href="${'/file/' + task.path + '?key='+user.accessKey}" 
+					    				   target="_blank">
+					    				   file name
+					    				</a>
+					    			</td>
+					    			<td>
+					    				<a th:if="${task.public}"
+					    				   th:href="${'/file/' + task.path}" 
+					    				   target="_blank">
+					    				   <i class="far fa-link"></i>
+					    				</a>
+					    				<span th:if="${!task.public}"><i class="has-text-grey-lighter fas fa-ban"></i></span>
+					    			</td>
+					    			<td th:text="${task.extension}">
+					    				type
+					    			</td>
+					    			<td>
+					    				<th:block th:if="${task.latestLog != null}" th:text="${task.latestLog.date}">available since</th:block>
+					    			</td>
+					    			<td>
+					    				<th:block th:if="${task.latestLog != null}" th:text="${task.nextUpdate}">next update</th:block>
+					    			</td>
+					    			<td th:text="${task.frequency}">
+					    				frequency
+					    			</td>
+					    			<td>
+					    				<a th:href="${'file/' + task.path + '?download&key=' + user.accessKey}">
+					    					<i class="far fa-cloud-download-alt"></i>
+					    				</a>
+					    			</td>
 					    		</tr>
 							</tbody>	    		
 				    	</table>
+
+					    <p class="is-size-7">
+					    	All metadata provided are licensed under a 
+					    	<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank">
+					    		Creative Commons Zero 
+					    	</a>
+					    	license (public domain).
+					    </p>
+
 				    </div>	
+				    
 				    
 				</div>
 			
@@ -62,13 +99,28 @@
 						Metadata exports will be available until the next update, overwriting the previous version.
 						<br/>
 						Please schedule your downloads. Expired metadata exports are not kept in archive.
-					</p>	
-					<p>	
-						Direct links to exports contain your credentials and can be used to access export files
-						without signing in, to be used for instance for automated requests.
 					</p>
+					
+					<h4>Sharing exports</h4>
+						
+					<ul>
+						<li>	
+							<strong>Links</strong> to exports contain your secret key and can be used to request export files
+							without signing in, to be used for instance for automated requests by external applications that you trust.
+						</li>
+						<li>
+							Do <strong>not</strong> share export links that contain your secret key with third parties or on the Internet. 
+							Instead, if you want an export to be publicly available, ask your Oapen administrator to publish the file. 
+						</li>
+						<li>	
+							<strong>Public links</strong> (<i class="far fa-link"></i>) to exports, if available, need no signing in nor secret key and 
+							are thus accessible for anyone without authentication. These can safely be shared with third parties or on the Internet.
+						</li>
+					</ul>
 					<p>						
-						Questions about these exports? Please contact supremedatachief@oapen.org
+						Questions about these exports? Please contact 
+						<a th:href="${contactEmail.value}"
+						   th:text="${contactEmail.value}">contact@oapen.org</a>
 					</p>
 						  
 		    	</div>

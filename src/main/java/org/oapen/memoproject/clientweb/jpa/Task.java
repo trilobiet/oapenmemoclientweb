@@ -27,8 +27,8 @@ public class Task implements Serializable {
     private String id; 
     
 	private String  fileName, extension, frequency;
-	private LocalDate startDate;
-	private Boolean isActive, isPublic;
+	private LocalDate startDate; 
+	private boolean isActive, isPublic;
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_homedir")
@@ -56,6 +56,12 @@ public class Task implements Serializable {
 			case "Y": return "yearly";
 			default: return "daily";
 		}
+	}
+	
+	public String getPath() {
+		
+		
+		return client.getUsername() + "/" + fileName;
 	}
 	
 	

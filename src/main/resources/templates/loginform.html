@@ -2,7 +2,7 @@
 <html layout:decorate="~{layout/main}"
       xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
 <head>
-    <title th:text="'OAPEN MEMO ' + ${user?.name}">article title</title>
+    <title>OAPEN MEMO Login</title>
 </head>
 
 <body>
@@ -13,53 +13,64 @@
 	
 		   	<div class="container">
 		   	
-		    	<table class="wrapper">
-		    		<tr>
-		    			<td>
-					        <form name="f" th:action="@{/login}" method="post">            
-					        	<img class="logo" src="https://oapen.org/static-assets/images/layout/oapenlogo_01_colour.jpg"/>  
-					        	<h2>OAPEN MEMO Client Web</h2>
-					        	<h3>for selected partners</h3>
-					        	<div> 
-					                <table>
-					                	<tr th:if="${param.error}">
-					                		<td colspan="2" class="alert">
-					                			Invalid login credentials.<br/>
-					                			Please correct, or contact the application manager at Oapen.
-					                		</td>
-					                	</tr>
-					                	<tr th:if="${param.msglogout}">
-					                		<td colspan="2" class="success">
-					                			You have been logged out.
-					                		</td>
-					                	</tr>
-					                	<tr>
-					                		<th>
-					                			<label for="username">Username</label>
-					                		</th>
-					                		<td>
-					                			<input type="text" id="username" name="username"/>
-					                		</td>
-					                	</tr>
-					                	<tr>
-					                		<th>
-					                			<label for="password">Password</label>
-					                		</th>
-					                		<td>
-					                			<input type="password" id="password" name="password"/>
-					                		</td>
-					                	</tr>
-					                	<tr>
-					                		<td colspan="2">
-					                			<button type="submit" class="btn">Log in</button>
-					                		</td>
-					                	</tr>
-					                </table>
-					             </div>   
-					        </form>
-		    			</td>
-		    		</tr>
-		    	</table>
+		   		<div class="content memo-login">
+		   	
+			    	<table class="wrapper">
+			    		<tr>
+			    			<td>
+						        <form name="f" th:action="@{/login}" method="post">            
+						        	<h2>MEMO login - for selected partners</h2>
+						        	<div> 
+						                <table>
+						                	<tr th:if="${param.error}">
+						                		<td colspan="2" class="alert">
+						                			<b>Invalid login credentials.</b>
+						                			<br/>
+						                			Please correct, or contact the application manager at OAPEN.
+						                		</td>
+						                	</tr>
+						                	<tr th:if="${param.msglogout}">
+						                		<td colspan="2" class="success">
+						                			<b>You have been logged out.</b>
+						                		</td>
+						                	</tr>
+						                	<tr>
+						                		<th>
+						                			<label for="username">Username</label>
+						                		</th>
+						                		<td>
+						                			<input type="text" id="username" name="username"/>
+						                		</td>
+						                	</tr>
+						                	<tr>
+						                		<th>
+						                			<label for="password">Password</label>
+						                		</th>
+						                		<td>
+						                			<input type="password" id="password" name="password"/>
+						                		</td>
+						                	</tr>
+						                	<tr>
+						                		<th></th>
+						                		<td>
+						                			<input type="checkbox" name="remember-me"/> Remember me
+						                		</td>
+						                	</tr>
+						                	<tr>
+						                		<th></th>
+						                		<td>
+						                			<button type="submit" class="btn">Log in</button>
+						                		</td>
+						                	</tr>
+						                </table>
+						             </div>   
+						        </form>
+			    			</td>
+			    		</tr>
+			    	</table>
+			    	
+    			</div>
+    		
     		</div>
     		
     	</section>

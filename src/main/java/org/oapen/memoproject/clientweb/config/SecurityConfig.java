@@ -20,6 +20,8 @@ public class SecurityConfig {
 	 * @Bean public WebSecurityCustomizer webSecurityCustomizer() { // configure Web
 	 * security... }
 	 */
+	
+	// Use to generate test passwords https://bcrypt-generator.com/
 
 	@Bean
 	public static PasswordEncoder passwordEncoder() {
@@ -37,9 +39,9 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 		http
-			.csrf().disable()
+			.csrf().disable() 
 			.authorizeRequests()
-			.antMatchers("/assets/**","/public/**")
+			.antMatchers("/assets/**","/file/**")
             	.permitAll()
 			.anyRequest().authenticated()
 				.and()
@@ -49,8 +51,12 @@ public class SecurityConfig {
 				.and()
 			.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-				.logoutSuccessUrl("/login");
-		
+				.logoutSuccessUrl("/login")
+			.and()	
+				.rememberMe()
+				.key("somethingextremelysecretandutterlyincomprehensible")
+				.tokenValiditySeconds(86400) // 1 day, default = two weeks validity
+			; 
 		
 		return http.build();
 	}
