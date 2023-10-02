@@ -21,7 +21,17 @@
 			    	
 			    	<div class="table-container">
 			    	
-				    	<table class="table is-bordered is-hoverable is-fullwidth">
+				    	<table class="table is-bordered is-striped is-hoverable is-fullwidth">
+				    	
+							<colgroup>
+								<col class="col-export">
+								<col class="col-icon col-public-link">
+								<col class="col-type">
+								<col class="col-date col-available-since">
+								<col class="col-date col-next-update">
+								<col class="col-icon col-download">
+							</colgroup>				    	
+				    	
 					    	<thead>
 					    		<tr>
 					    			<th>export</th>
@@ -33,6 +43,7 @@
 					    			<th>download</th>
 					    		</tr>
 					    	</thead>
+					    	
 					    	<tbody>
 					    		<tr th:each="task: ${tasks}">
 					    			<td>
@@ -42,6 +53,7 @@
 					    				   target="_blank">
 					    				   file name
 					    				</a>
+					    				<div th:text="${task.description}" class="is-size-7" style="max-width:30em">description</div>
 					    			</td>
 					    			<td>
 					    				<a th:if="${task.public}"
@@ -60,7 +72,7 @@
 					    			<td>
 					    				<th:block th:if="${task.latestLog != null}" th:text="${task.nextUpdate}">next update</th:block>
 					    			</td>
-					    			<td th:text="${task.frequency}">
+					    			<td th:text="${task.frequencyAsText}">
 					    				frequency
 					    			</td>
 					    			<td>
@@ -69,7 +81,8 @@
 					    				</a>
 					    			</td>
 					    		</tr>
-							</tbody>	    		
+							</tbody>	
+							    		
 				    	</table>
 
 					    <p class="is-size-7">

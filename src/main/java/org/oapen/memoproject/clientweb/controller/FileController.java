@@ -51,12 +51,15 @@ public class FileController {
     		File file = fileOrError.get();
     		InputStream in = new FileInputStream(file);
     		
-    		System.out.println(getMimeType(file));
+    		// System.out.println(getMimeType(file));
     		
-			BodyBuilder bb = ResponseEntity.ok().header("Content-Type", getMimeType(file));
+			BodyBuilder bb = ResponseEntity.ok()
+				.header("Content-Type", getMimeType(file));
 			
 			if (download.isPresent()) 
 				bb.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+			else
+				bb.header("Content-Disposition", "inline; filename=\"" + fileName + "\"");
 			
 			return bb.body(new InputStreamResource(in));
     	} 

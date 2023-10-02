@@ -26,7 +26,7 @@ public class Task implements Serializable {
 	@Id
     private String id; 
     
-	private String  fileName, extension, frequency;
+	private String  fileName, extension, description, frequency;
 	private LocalDate startDate; 
 	private boolean isActive, isPublic;
 	
