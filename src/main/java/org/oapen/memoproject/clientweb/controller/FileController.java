@@ -54,12 +54,12 @@ public class FileController {
     		// System.out.println(getMimeType(file));
     		
 			BodyBuilder bb = ResponseEntity.ok()
-				.header("Content-Type", getMimeType(file));
+				.header("Content-Type", getMimeType(file) + ";charset=utf-8");
 			
 			if (download.isPresent()) 
 				bb.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-			else
-				bb.header("Content-Disposition", "inline; filename=\"" + fileName + "\"");
+			//else
+			//	bb.header("Content-Disposition", "inline; filename=\"" + fileName + "\"");
 			
 			return bb.body(new InputStreamResource(in));
     	} 
@@ -75,10 +75,15 @@ public class FileController {
     }
     
     
-    
     private String getMimeType(File file) {
-
+    	
+    	/* Tika detects RSS as "application/rss+xml"
+    	   which is not recognized by most browsers. */
+    	if (file.getName().toLowerCase().endsWith(".rss")) 
+    		return "text/xml"; 
+    	
 		Tika tika = new Tika();
+		
 		try {
 			return tika.detect(file);
 		} catch (IOException e) {
