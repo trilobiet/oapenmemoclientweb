@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class LoginController {
 
-    @GetMapping(value = {"/login","/login/{homedir}"})
+    @GetMapping(value = {"/login","/clients/{homedir}"})
     public String login(
     	Model model, String error, 
     	@PathVariable Optional<String> homedir) {

@@ -41,13 +41,14 @@ public class SecurityConfig {
 		http
 			.csrf().disable() 
 			.authorizeRequests()
-			.antMatchers("/assets/**","/file/**","/favicon.ico","/login/*")
+			.antMatchers("/assets/**","/file/**","/favicon.ico","/clients/*")
             	.permitAll()
 			.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
+				.defaultSuccessUrl("/", true)  // redirect to home after successful login
 				.and()
 			.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
