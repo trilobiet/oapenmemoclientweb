@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.oapen.memoproject.clientweb.jpa.Client;
 import org.oapen.memoproject.clientweb.jpa.Setting;
-import org.oapen.memoproject.clientweb.jpa.SettingsRepository;
+import org.oapen.memoproject.clientweb.jpa.SettingRepository;
 import org.oapen.memoproject.clientweb.jpa.Task;
 import org.oapen.memoproject.clientweb.jpa.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class HomeController {
 	TaskRepository taskRepository;
 	
 	@Autowired
-	SettingsRepository settingsRepository;
+	SettingRepository settingRepository;
 	
 	@Autowired
 	@Value("${application.filesroot}") 
@@ -40,7 +40,7 @@ public class HomeController {
     	List<Task> tasks = taskRepository.findByClient(user, Sort.by(Sort.Direction.ASC,"fileName"));
     	model.addAttribute("tasks", tasks);
     	
-    	Optional<Setting> contactEmail = settingsRepository.findByKey(CONTACT_EMAIL);
+    	Optional<Setting> contactEmail = settingRepository.findByKey(CONTACT_EMAIL);
     	model.addAttribute("contactEmail", contactEmail.orElseGet(() -> new Setting("", "["+CONTACT_EMAIL+" unspecified]")));
     	
     	model.addAttribute("clientRoot", filesRoot + user.getUsername() + "/");
