@@ -8,8 +8,6 @@ spring.datasource.password=********
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 
-application.filesroot=/home/...
-
 #Disable default error page
 server.error.whitelabel.enabled=false 
 

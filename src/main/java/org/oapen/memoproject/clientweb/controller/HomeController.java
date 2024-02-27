@@ -9,7 +9,6 @@ import org.oapen.memoproject.clientweb.jpa.SettingRepository;
 import org.oapen.memoproject.clientweb.jpa.Task;
 import org.oapen.memoproject.clientweb.jpa.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -25,10 +24,6 @@ public class HomeController {
 	@Autowired
 	SettingRepository settingRepository;
 	
-	@Autowired
-	@Value("${application.filesroot}") 
-	private String filesRoot; 
-	
     @GetMapping({"/","/home"})
     public String hello(Model model, @AuthenticationPrincipal Client user) {
     	
@@ -42,8 +37,6 @@ public class HomeController {
     	
     	Optional<Setting> contactEmail = settingRepository.findByKey(CONTACT_EMAIL);
     	model.addAttribute("contactEmail", contactEmail.orElseGet(() -> new Setting("", "["+CONTACT_EMAIL+" unspecified]")));
-    	
-    	model.addAttribute("clientRoot", filesRoot + user.getUsername() + "/");
     	
     	return "homepage"; // src/main/resources/templates/homepage.html (thymeleaf)
     }

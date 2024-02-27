@@ -14,7 +14,7 @@
 	
 	<groupId>org.oapen.memoproject</groupId>
 	<artifactId>clientweb</artifactId>
-	<version>0.1.2</version>
+	<version>0.1.3</version>
 	<name>clientweb</name>
 	<description>Client directories for OAPEN MEMO project</description>
 	
