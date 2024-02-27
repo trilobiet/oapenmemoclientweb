@@ -1,23 +1,20 @@
 package org.oapen.memoproject.clientweb.controller;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-import org.apache.tika.Tika;
-import org.oapen.memoproject.clientweb.FileService;
-import org.oapen.memoproject.clientweb.FileService.FailStatus;
+import org.oapen.memoproject.clientweb.ExportsService;
+import org.oapen.memoproject.clientweb.ExportsService.FailStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,15 +22,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.vavr.control.Either;
 
-@Controller
-public class FileController {
+// OBSOLETE
+// @Controller
+public class FileExportsController {
 	
 	@Autowired
 	@Value("${application.filesroot}") 
 	private String filesRoot; 
 	
 	@Autowired
-	private FileService fileService;
+	private ExportsService fileService;
 	
     @GetMapping(value = "/file/{homedir}/{fileName}")
     @ResponseBody
@@ -44,24 +42,23 @@ public class FileController {
     		@RequestParam(name = "download") Optional<String> download
     	) throws IOException {
     	
-    	Either<FailStatus, File> fileOrError = fileService.getFile(homedir, fileName, key);
+    	Either<FailStatus, Pair<InputStream, String>> fileOrError = fileService.getExport(homedir, fileName, key);
 
     	if (fileOrError.isRight()) {
-			
-    		File file = fileOrError.get();
-    		InputStream in = new FileInputStream(file);
     		
-    		// System.out.println(getMimeType(file));
+    		Pair<InputStream, String> p = fileOrError.get();
+    		InputStream in = p.getFirst();
     		
 			BodyBuilder bb = ResponseEntity.ok()
-				.header("Content-Type", getMimeType(file) + ";charset=utf-8");
+				.header("Content-Type",p.getSecond() + ";charset=utf-8");
 			
 			if (download.isPresent()) 
 				bb.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-			//else
-			//	bb.header("Content-Disposition", "inline; filename=\"" + fileName + "\"");
+
+			// No need to close, Spring handles this
+			InputStreamResource res = new InputStreamResource(in);
 			
-			return bb.body(new InputStreamResource(in));
+			return bb.body(res);
     	} 
     	else {
     		
@@ -72,24 +69,6 @@ public class FileController {
     				failStatus.toString().replace("_", " ").getBytes(StandardCharsets.UTF_8));
     		return ResponseEntity.status(httpStatus).body(new InputStreamResource(stream));
     	}
-    }
-    
-    
-    private String getMimeType(File file) {
-    	
-    	/* Tika detects RSS as "application/rss+xml"
-    	   which is not recognized by most browsers. */
-    	if (file.getName().toLowerCase().endsWith(".rss")) 
-    		return "text/xml"; 
-    	
-		Tika tika = new Tika();
-		
-		try {
-			return tika.detect(file);
-		} catch (IOException e) {
-			return "application/octet-stream";
-		}
-
     }
     
 }
