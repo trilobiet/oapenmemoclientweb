@@ -45,7 +45,8 @@ public class FileExportsController {
     		InputStream in = p.getFirst();
     		
 			BodyBuilder bb = ResponseEntity.ok()
-				.header("Content-Type",p.getSecond() + ";charset=utf-8");
+				.header("Content-Type",p.getSecond() + ";charset=utf-8")
+				.header("Cache-Control", "no-store");
 			
 			if (download.isPresent()) 
 				bb.header("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
