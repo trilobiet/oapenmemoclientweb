@@ -13,16 +13,17 @@ import org.oapen.memoproject.clientweb.jpa.ClientRepository;
 import org.oapen.memoproject.clientweb.jpa.Task;
 import org.oapen.memoproject.clientweb.jpa.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.util.Pair;
+import org.springframework.stereotype.Component;
 
 import io.vavr.control.Either;
 
-//OBSOLETE
-// @Component
+@Component
 public class FileExportsService implements ExportsService {
 	
-	//@Autowired
-	//@Value("${application.filesroot}") 
+	@Autowired
+	@Value("${application.filesroot}") 
 	private String filesRoot; 
 	
 	@Autowired

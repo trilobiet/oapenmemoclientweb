@@ -11,13 +11,12 @@ import org.oapen.memoproject.clientweb.jpa.ExportRepository;
 import org.oapen.memoproject.clientweb.jpa.Task;
 import org.oapen.memoproject.clientweb.jpa.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.util.Pair;
-import org.springframework.stereotype.Component;
 
 import io.vavr.control.Either;
 
-@Component @Primary
+// Obsolete
+// @Component 
 public class JpaExportsService implements ExportsService {
 	
 	@Autowired
