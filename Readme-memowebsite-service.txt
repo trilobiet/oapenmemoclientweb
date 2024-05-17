@@ -1,12 +1,17 @@
-In /etc/systemd/system create a file named oapen-memo-client-website.service with the following content:
+# In /etc/systemd/system create a file named oapen-memo-client-website.service with the following content:
 
 [Unit]
 Description=OAPEN MEMO Client Website
-After=syslog.target
+After=syslog.target network.target
 
 [Service]
+SuccessExitStatus=143
 User=oapen
-ExecStart=/home/oapen/oapenmemo/clientweb.jar SuccessExitStatus=143
+Group=oapen
+
+Type=simple
+
+ExecStart=java -Xmx512m -jar /home/oapen/oapenmemo/clientweb.jar
 
 [Install] 
 WantedBy=multi-user.target
