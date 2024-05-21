@@ -37,7 +37,7 @@
 					    			<th>export</th>
 					    			<th>public link</th>
 					    			<th>type</th>
-					    			<th>available since</th>
+					    			<th>this update</th>
 					    			<th>next update</th>
 					    			<th>frequency</th>
 					    			<th>download</th>
@@ -67,13 +67,18 @@
 					    				type
 					    			</td>
 					    			<td>
-					    				<th:block th:if="${task.latestLog != null}" th:text="${task.latestLog.date}">available since</th:block>
+					    				<th:block th:if="${task.latestLog != null}" th:text="${task.latestLog.date}">available since
+					    				</th:block>
 					    			</td>
 					    			<td>
 					    				<th:block th:if="${task.latestLog != null}" th:text="${task.nextUpdate}">next update</th:block>
 					    			</td>
-					    			<td th:text="${task.frequencyAsText}">
-					    				frequency
+					    			<td>
+					    				<th:block th:text="${task.frequencyAsText}">frequency</th:block>
+					    				<div class="is-size-7 has-text-grey-light">
+					    					since
+					    					<span th:if="${task.startDate != null}" th:text="${task.startDate}" >start date</span>
+					    				</div>
 					    			</td>
 					    			<td>
 					    				<a th:href="${'file/' + task.path + '?download&key=' + user.accessKey}">

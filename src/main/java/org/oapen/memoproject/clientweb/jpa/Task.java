@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,7 +28,9 @@ public class Task implements Serializable {
 	@Id
     private String id; 
     
-	private String  fileName, extension, description, frequency;
+	private String  fileName, extension, description;
+	@Enumerated(EnumType.STRING)
+	private TaskFrequency frequency;
 	private LocalDate startDate; 
 	private boolean isActive, isPublic;
 	
@@ -34,32 +38,23 @@ public class Task implements Serializable {
 	@JoinColumn(name = "id_homedir")
 	private Client client;
 	
+	
 	public LocalDate getNextUpdate() {
 		
-		LocalDate d = latestLog.getDate();
-
-		switch (frequency) {
-		
-			case "W": return d.plusWeeks(1);
-			case "M": return d.plusMonths(1);
-			case "Y": return d.plusYears(1);
-			default: return d.plusDays(1);
-		}
+		LocalDate lastRunDay = latestLog.getDate();
+		long unitsBetween = frequency.getChronoUnit().between(startDate, lastRunDay) + 1;
+		LocalDate dt = startDate.plus(unitsBetween, frequency.getChronoUnit());
+		return dt;
 	}
+	
 
 	public String getFrequencyAsText() {
 		
-		switch (frequency) {
-		
-			case "W": return "weekly";
-			case "M": return "monthly";
-			case "Y": return "yearly";
-			default: return "daily";
-		}
+		return frequency.name();
 	}
+
 	
 	public String getPath() {
-		
 		
 		return client.getUsername() + "/" + fileName;
 	}

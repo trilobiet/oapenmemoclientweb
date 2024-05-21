@@ -9,6 +9,7 @@ import org.oapen.memoproject.clientweb.jpa.SettingRepository;
 import org.oapen.memoproject.clientweb.jpa.Task;
 import org.oapen.memoproject.clientweb.jpa.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class HomeController {
     	//Client user = (Client) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	model.addAttribute("user", user);
 
-    	List<Task> tasks = taskRepository.findByClient(user, Sort.by(Sort.Direction.ASC,"fileName"));
+    	List<Task> tasks = taskRepository.findByClientAndIsActiveTrue(user, Sort.by(Sort.Direction.ASC,"fileName"));
     	model.addAttribute("tasks", tasks);
     	
     	Optional<Setting> contactEmail = settingRepository.findByKey(CONTACT_EMAIL);
