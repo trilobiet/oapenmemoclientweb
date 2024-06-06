@@ -41,8 +41,8 @@ public class Task implements Serializable {
 	
 	public LocalDate getNextUpdate() {
 		
-		LocalDate lastRunDay = latestLog.getDate();
-		long unitsBetween = frequency.getChronoUnit().between(startDate, lastRunDay) + 1;
+		LocalDate today = LocalDate.now();
+		long unitsBetween = frequency.getChronoUnit().between(startDate, today) + 1;
 		LocalDate dt = startDate.plus(unitsBetween, frequency.getChronoUnit());
 		return dt;
 	}
