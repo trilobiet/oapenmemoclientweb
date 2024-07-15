@@ -1,8 +1,8 @@
-# In /etc/systemd/system create a file named oapen-memo-client-website.service with the following content:
+# In /etc/systemd/system create a file named oabookstoolkit-website.service with the following content:
 # https://www.baeldung.com/linux/run-java-application-as-service
 
 [Unit]
-Description=OAPEN MEMO Client Website
+Description=OABooks Toolkit Website
 After=syslog.target network.target
 
 [Service]
@@ -12,7 +12,7 @@ Group=oapen
 
 Type=simple
 
-ExecStart=java -Xmx512m -jar /home/oapen/oapenmemo/clientweb.jar
+ExecStart=java -Xmx512m -jar /home/oapen/websites/oabooks-toolkit/oabookstoolkit.jar
 ExecStop=/bin/kill -15 $MAINPID
 
 Restart=always

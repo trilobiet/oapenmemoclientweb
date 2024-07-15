@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.channels.FileChannel;
 import java.util.Optional;
 
-import org.apache.tika.Tika;
 import org.oapen.memoproject.clientweb.jpa.Client;
 import org.oapen.memoproject.clientweb.jpa.ClientRepository;
 import org.oapen.memoproject.clientweb.jpa.Task;
@@ -32,6 +30,8 @@ public class FileExportsService implements ExportsService {
 	@Autowired
 	private ClientRepository clientRepository; 
 
+	@Autowired
+	private MimeTypeService mimeTypeService; 
 	
 	@Override
 	public Either<FailStatus, Pair<InputStream, String>> getExport(String homedir, String fileName, String accessKey) {
@@ -46,7 +46,7 @@ public class FileExportsService implements ExportsService {
 			
 			File file = new File(filesRoot + client.get().getUsername() + "/" + fileName);
 			
-			// System.out.println(file);
+			System.out.println(file);
 			
 			FileInputStream fis;
 			try {
@@ -55,7 +55,7 @@ public class FileExportsService implements ExportsService {
 	    		task = taskRepository.findByClientAndFileName(client.get(), fileName);
 	    		
 	    		if (task.isPresent() && authorizeRequest(client.get(), task.get(), accessKey)) 
-	    			return Either.right(Pair.of(fis, getMimeType(fileName, fis)));
+	    			return Either.right(Pair.of(fis, mimeTypeService.getMimeTypeFromFileName(fileName)));
 	    		else {
 	    			fis.close();
 	    			return Either.left(FailStatus.UNAUTHORIZED);
@@ -68,7 +68,7 @@ public class FileExportsService implements ExportsService {
 			
 		}
 	}
-	
+
 	
 	private Boolean authorizeRequest(Client client, Task task, String accessKey) {
 		
@@ -77,32 +77,6 @@ public class FileExportsService implements ExportsService {
 		else
 			return false;
 	}
-	
-	
-    private String getMimeType(String fileName, InputStream is) {
-    	
-    	/* Tika detects RSS as "application/rss+xml"
-    	   which is not recognized by most browsers. */
-    	if (fileName.toLowerCase().endsWith(".rss")) 
-    		return "text/xml"; 
-    	
-		Tika tika = new Tika();
-		
-		try {
-			FileInputStream fis = (FileInputStream) is;
-			// Use this channel to reset the inputstream
-			// after tika inspected it 
-			// https://stackoverflow.com/questions/1094703/java-file-input-with-rewind-reset-capability
-			FileChannel ch = fis.getChannel(); 
-			String mt = tika.detect(is);
-			ch.position(0);
-			return mt;
-		} catch (IOException e) {
-			return "application/octet-stream";
-		}
-
-    }
-	
 	
 	
 }
