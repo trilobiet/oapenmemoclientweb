@@ -1,6 +1,8 @@
 # In /etc/systemd/system create a file named oabookstoolkit-website.service with the following content:
 # https://www.baeldung.com/linux/run-java-application-as-service
 
+# TEST
+
 [Unit]
 Description=OABooks Toolkit Website
 After=syslog.target network.target
