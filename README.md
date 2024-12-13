@@ -62,7 +62,7 @@ This application must be installed as a service.
          }
      }
     
-- Run `certbot` or use an equivalent tool to obtain an SSL Certificate and enforce secure connections.
+- Run `certbot` (https://certbot.eff.org/) or use an equivalent tool to obtain an SSL Certificate and enforce secure connections.
 
 
 ## Usage        
