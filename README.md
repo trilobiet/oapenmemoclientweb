@@ -49,20 +49,20 @@ This application must be installed as a service.
 - Create a symlink `ln -s clientweb-x.y.z.jar clientweb.jar`;
 - In `/etc/systemd/system` create a file named `oapen-memo-clientweb.service` with the content
   copied from [Readme-memowebsite-service.txt](./Readme-memowebsite-service.txt).  
-- Create a mapping on your webserver to access the application from the internet (NGINX example below):
+- Create a mapping on your webserver to access the application from the internet:
         
-     server {
-         
-         server_name memo.oapen.org;
-         
-         location / {
-             proxy_set_header Host $host;
-             proxy_set_header x-forwarded-for $remote_addr;
-             proxy_pass http://localhost:8083;
-         }
-     }
+        server {
+            
+            server_name memo.oapen.org;
+            
+            location / {
+                proxy_set_header Host $host;
+                proxy_set_header x-forwarded-for $remote_addr;
+                proxy_pass http://localhost:8083;
+            }
+        }
     
-- Run `certbot` (https://certbot.eff.org/) or use an equivalent tool to obtain an SSL Certificate and enforce secure connections.
+- Run `certbot` or use an equivalent tool to obtain an SSL Certificate and enforce secure connections.
 
 
 ## Usage        
