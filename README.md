@@ -79,7 +79,7 @@ When a chain icon 🔗 appears in the 'public link' column, the associated link 
 
 ## Access to resources
 
-Application access is only available for authorized users. Users are authenticated via a login page. 
+Application access is only available for authorized users. Users are authenticated via a login page. Accounts (username + password) can only be created and managed through the MEMO Manager application.
 
 Resources (exported files resulting from tasks being run) however, are available without authentication, but access to them can be restricted using an access key. Access restriction on a resource can be used to allow third party applications knowing the key to request the resource, without making the resource public.
 
@@ -97,7 +97,7 @@ Not access restricted resources can be requested without an access key:
 
 	https://memo.oapen.org/file/ABC_Corp/a_public_file.json
 
-Attempts to request access restricted files without a key will be answered with a `401 Unauthorized` response status code.
+Attempts to request an access restricted file without a key will be answered with a `401 Unauthorized` response status code.
 
 
 
