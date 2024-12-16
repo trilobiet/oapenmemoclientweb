@@ -77,3 +77,29 @@ When a chain icon 🔗 appears in the 'public link' column, the associated link 
 ![MEMO Client web](./src/main/resources/static/assets/images/MEMO-Clientweb-1.png)
 
 
+## Access to resources
+
+Application access is only available for authorized users. Users are authenticated via a login page. 
+
+Resources (exported files resulting from tasks being run) however, are available without authentication, but access to them can be restricted using an access key. Access restriction on a resource can be used to allow third party applications knowing the key to request the resource, without making the resource public.
+
+Whether access to a resource is restricted is decided in the MEMO Administrator application, where the access key can also be generated. 
+
+<span style="font-size:2em;float:left;color:red">⚠</span>
+
+> ** MEMO Customers should be careful not to share the access key nor publish links containing the access key.**   
+> 
+> The access key is defined on the client level, not the task level. Once a client's key is compromised, it will grant access to **all** exports for that client. 
+
+In order to request an access restricted resource, the access key must be appended to the request:
+
+    https://memo.oapen.org/file/ABC_Corp/a_private_file.json?key=4fdd4c3c0eff4aed8a029d9b9638fe77
+
+Not access restricted resources can be requested without an access key:
+
+	https://memo.oapen.org/file/ABC_Corp/a_public_file.json
+
+Attempts to request access restricted files without a key will be answered with a `401 Unauthorized` response status code.
+
+
+
