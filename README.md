@@ -47,9 +47,9 @@ This application must be installed as a service.
 
 - Copy `clientweb-x.y.z.jar` to the user's (`oapen`) home directory;
 - Create a symlink `ln -s clientweb-x.y.z.jar clientweb.jar`;
-- In `/etc/systemd/system` create a file named `oapen-memo-clientweb.service` with the content
-  copied from [Readme-memowebsite-service.txt](./Readme-memowebsite-service.txt).  
-- Create a mapping on your webserver to access the application from the internet:
+- In `/etc/systemd/system` create a file named `oapen-memo-clientweb.service`. See
+  [Readme-memowebsite-service.txt](./Readme-memowebsite-service.txt) for an example.  
+- Create a mapping on your web server to access the application from the internet (NGINX example):
         
         server {
             
