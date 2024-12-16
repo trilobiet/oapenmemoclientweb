@@ -85,9 +85,7 @@ Resources (exported files resulting from tasks being run) however, are available
 
 Whether access to a resource is restricted is decided in the MEMO Administrator application, where the access key can also be generated. 
 
-<span style="font-size:2em;float:left;color:red">⚠</span>
-
-> ** MEMO Customers should be careful not to share the access key nor publish links containing the access key.**   
+> **⚠ MEMO Customers should be careful not to share the access key nor publish links containing the access key.**   
 > 
 > The access key is defined on the client level, not the task level. Once a client's key is compromised, it will grant access to **all** exports for that client. 
 
