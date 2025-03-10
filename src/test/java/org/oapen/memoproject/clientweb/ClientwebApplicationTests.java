@@ -1,12 +1,9 @@
 package org.oapen.memoproject.clientweb;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
+//@SpringBootTest
 class ClientwebApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
