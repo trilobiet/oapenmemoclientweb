@@ -17,7 +17,10 @@ You need a user account to access the site. Clients can only view their own data
    Login credentials 
 * `application.filesroot`
    Root directory for the generated export files (`${user.home}/oapenmemo/exports/`). OAPEN Task Runner writes its output here.
-   See below (Files root directory) for a detailed explanation. 
+   See below (Files root directory) for a detailed explanation.
+*  `path.customresources` 
+   System path to resources for UI customization, e.g. `file:/home/oapen/oapenmemo/clientweb/customresources/`
+   
 
 
 ### Files root directory
@@ -41,15 +44,33 @@ given the current date is after the task's `startDate` value. (`tmp` is a specia
 Given a client 'abc_corp' and a task 'some_fancy_task' of type `xml` the associated file will be located at `exports/abc_corp/some_fancy_task.xml`.
 
 
+## Custom resources
+
+The clients website can be customized to display your logo and optionally adjust some of the colors to reflect your organization's identity.
+
+The directory targeted in `path.customresources` must contain 3 files:
+
+- `custom.css`   
+   Override default styles for the manager application here, or leave empty;
+- `logo.png`   
+   The logo shown on the login screen;
+- `favicon.ico`   
+
+
 ## Installation and running
 
 This application must be installed as a service.
 
+- Create an installation directory under the user's (`oapen`) home directory;
 - Copy `clientweb-x.y.z.jar` to the user's (`oapen`) home directory;
+- Copy `src/main/resources/application.properties.tpl` to the installation directory and rename to `application.properties`;
+- Edit `application.properties` (see above 'Configuration');
+- Create a directory `customresources` (see above 'Custom resources');
 - Create a symlink `ln -s clientweb-x.y.z.jar clientweb.jar`;
 - In `/etc/systemd/system` create a file named `oapen-memo-clientweb.service`. See
   [Readme-memowebsite-service.txt](./Readme-memowebsite-service.txt) for an example.  
-- Create a mapping on your web server to access the application from the internet (NGINX example):
+- Choose a **free** internal port and create a mapping on your web server to access the application from the internet   
+  (NGINX example below for 'memomanager.oapen.org', internal port 8083):
         
         server {
             
@@ -58,7 +79,7 @@ This application must be installed as a service.
             location / {
                 proxy_set_header Host $host;
                 proxy_set_header x-forwarded-for $remote_addr;
-                proxy_pass http://localhost:8083;
+                proxy_pass http://localhost:8083; # -> use the same port as in application.properties!
             }
         }
     
