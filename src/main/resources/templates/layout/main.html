@@ -7,11 +7,10 @@
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
-	<link rel="stylesheet" href="https://oapen.org/static-assets/css/styles.css?v=1.18"/>
-	<link rel="stylesheet" href="https://oapen.org/static-assets/css/contenttypes.css?v=1.18"/>
-	<link rel="stylesheet" th:href="@{/assets/fontawesome-pro-5.12.1-web/css/all.min.css?v=1.06}"/>	
-
+	<link rel="stylesheet" th:href="@{/assets/css/reset.css}"/>
 	<link rel="stylesheet" th:href="@{/assets/css/styles.css?v=1.03}"/>
+	<link rel="stylesheet" th:href="@{/customassets/custom.css?v=1.01}"/>
+	<link rel="stylesheet" th:href="@{/assets/fontawesome-pro-5.12.1-web/css/all.min.css?v=1.06}"/>	
 	
 	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>	
 	
@@ -22,73 +21,35 @@
 	<!--
 		HEADER
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-	<header id="OapenHeader">
+	<header>
 
-		<div class="container">
+		<!-- logo, search/deposit/join -->
+		<nav class="navtop">
 
-			<!-- logo, search/deposit/join -->
-			<nav class="oapen-topnav" role="navigation">
+			<a th:href="@{'/'}">
+				<img th:src="@{/customassets/logo.png}" alt="logo" class="logo">
+			</a>
 
-				<div class="level topnav">
+			<h3>MEMO - Metadata Export Module for Open Access Books</h3>
 
-					<div class="level-left">
+		</nav>
 
-						<a th:href="@{'/'}">
-							<img th:src="@{/assets/images/layout/oapenlogo 01 colour - open access.png}" width="150" alt="Logo Oapen" class="oapen-logo">
-						</a>
+		<nav class="navmain">
 
-					</div>
-
-					<div class="level-right">
-
-						<h3 class="memo-hdr-title">MEMO - Metadata Export Module for Open Access Books</h3>
-
-					</div>
-
-				</div>
-
-			</nav>
-
-		</div><!-- /container -->
-
-		<nav class="navbar oapen-mainnav" role="navigation">
-
-			<div class="container">
-
-				<div class="navbar-brand">
-
-					<!-- hamburger -->
-					<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
-						<span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span>
-					</a>
-
-				</div>
-
-				<div id="navbarMain" class="navbar-menu" th:if="${user}">
-
-					<ul class="navbar-start">
-
-						<li class="oapen-nav-dropdown">
-							<a th:href="@{'/'}" class="navbar-item">My exports</a>
-						</li>
-
-						<li class="oapen-nav-dropdown">
-							<a th:href="@{'/explainer'}" class="navbar-item">Explainer</a>
-						</li>
-
-					</ul>
-					
-					<ul class="navbar-end oapen-nav-right">
-
-						<li class="oapen-nav-dropdown">
-							<a th:href="@{'/logout'}" class="navbar-item">Sign out</a>
-						</li>
-
-					</ul>
-
-				</div>
-
-			</div>
+			<ul th:if="${user}">
+				<li>
+					<a th:href="@{'/'}">My exports</a>
+				</li>
+				<li>
+					<a th:href="@{'/explainer'}">Explainer</a>
+				</li>
+			</ul>
+				
+			<ul th:if="${user}">
+				<li>
+					<a th:href="@{'/logout'}">Sign out</a>
+				</li>
+			</ul>
 
 		</nav>
 
@@ -106,21 +67,11 @@
 	<!--
 		FOOTER
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-	<footer class="footer">
+	<footer>
 
-		<div class="container">
-
-			<div class="content has-text-centered">
-
-				<div class="is-size-7">
-					Version <span th:text="${@environment.getProperty('application.version')}"></span>
-					|
-					<a href="https://www.trilobiet.nl">Website by Trilobiet</a>
-				</div>
-
-			</div>
-
-		</div>
+		Version <span th:text="${@environment.getProperty('application.version')}"></span>
+		|
+		<a href="https://www.trilobiet.nl">Website by Trilobiet</a>
 
 	</footer>
 

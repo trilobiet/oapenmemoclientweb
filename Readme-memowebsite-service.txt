@@ -12,7 +12,7 @@ Group=oapen
 
 Type=simple
 
-ExecStart=java -Xmx512m -jar /home/oapen/websites/oabooks-toolkit/oabookstoolkit.jar
+ExecStart=/home/oapen/oapenmemo/clientweb/clientweb.jar
 ExecStop=/bin/kill -15 $MAINPID
 
 Restart=always

@@ -41,7 +41,7 @@ public class SecurityConfig {
 		http
 			.csrf().disable() 
 			.authorizeRequests()
-			.antMatchers("/assets/**","/file/**","/favicon.ico","/clients/*")
+			.antMatchers("/assets/**","/customassets/**","/file/**","/favicon.ico","/clients/*")
             	.permitAll()
 			.anyRequest().authenticated()
 				.and()

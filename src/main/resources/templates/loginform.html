@@ -2,78 +2,61 @@
 <html layout:decorate="~{layout/main}"
       xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
 <head>
-    <title>OAPEN MEMO Login</title>
+    <title>MEMO Login</title>
 </head>
 
 <body>
 
-	<main layout:fragment="content" class="oapen-main">
-	
-		<section class="section">
-	
-		   	<div class="container">
-		   	
-		   		<div class="content memo-login">
-		   	
-			    	<table class="wrapper">
-			    		<tr>
-			    			<td>
-						        <form name="f" th:action="@{/login}" method="post">            
-						        	<h2>MEMO login - for selected partners</h2>
-						        	<div> 
-						                <table>
-						                	<tr th:if="${param.error}">
-						                		<td colspan="2" class="alert">
-						                			<b>Invalid login credentials.</b>
-						                			<br/>
-						                			Please correct, or contact the application manager at OAPEN.
-						                		</td>
-						                	</tr>
-						                	<tr th:if="${param.msglogout}">
-						                		<td colspan="2" class="success">
-						                			<b>You have been logged out.</b>
-						                		</td>
-						                	</tr>
-						                	<tr>
-						                		<th>
-						                			<label for="username">Username</label>
-						                		</th>
-						                		<td>
-						                			<input type="text" id="username" name="username" th:value="${homedir}"/>
-						                		</td>
-						                	</tr>
-						                	<tr>
-						                		<th>
-						                			<label for="password">Password</label>
-						                		</th>
-						                		<td>
-						                			<input type="password" id="password" name="password"/>
-						                		</td>
-						                	</tr>
-						                	<tr>
-						                		<th></th>
-						                		<td>
-						                			<input type="checkbox" name="remember-me"/> Remember me
-						                		</td>
-						                	</tr>
-						                	<tr>
-						                		<th></th>
-						                		<td>
-						                			<button type="submit" class="btn">Log in</button>
-						                		</td>
-						                	</tr>
-						                </table>
-						             </div>   
-						        </form>
-			    			</td>
-			    		</tr>
-			    	</table>
-			    	
-    			</div>
-    		
-    		</div>
-    		
-    	</section>
+	<main layout:fragment="content" class="login">
+
+		<h2>MEMO login - for selected partners</h2>
+
+        <form name="f" th:action="@{/login}" method="post">
+			      
+           <table>
+            	<tr th:if="${param.error}">
+            		<td colspan="2" class="alert">
+            			<b>Invalid login credentials.</b>
+            			<br/>
+            			Please correct, or contact the application manager at OAPEN.
+            		</td>
+            	</tr>
+            	<tr th:if="${param.msglogout}">
+            		<td colspan="2" class="success">
+            			<b>You have been logged out.</b>
+            		</td>
+            	</tr>
+            	<tr>
+            		<th>
+            			<label for="username">Username</label>
+            		</th>
+            		<td>
+            			<input type="text" id="username" name="username" th:value="${homedir}"/>
+            		</td>
+            	</tr>
+            	<tr>
+            		<th>
+            			<label for="password">Password</label>
+            		</th>
+            		<td>
+            			<input type="password" id="password" name="password"/>
+            		</td>
+            	</tr>
+            	<tr>
+            		<th></th>
+            		<td>
+            			<input type="checkbox" name="remember-me"/> Remember me
+            		</td>
+            	</tr>
+            	<tr>
+            		<th></th>
+            		<td>
+            			<button type="submit" class="btn">Log in</button>
+            		</td>
+            	</tr>
+            </table>
+
+        </form>
     	
 	</main>	
 

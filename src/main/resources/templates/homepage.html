@@ -2,161 +2,139 @@
 <html layout:decorate="~{layout/main}"
       xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
 <head>
-    <title th:text="'OAPEN MEMO ' + ${user.name}">article title</title>
+<title th:text="'MEMO ' + ${user.name}">article title</title>
 </head>
 
 <body>
 
-	<main layout:fragment="content" class="oapen-main">
+	<main layout:fragment="content" class="content">
 	
-		<section class="section">
+		<section>
 	
-		   	<div class="container">
-		   	
-				<div class="content oapen-primary">
-		    
-			    	<h1 th:text="${user.name}">User name</h1>
-			    	
-			    	<h2>Metadata Exports</h2>
-			    	
-			    	<div class="table-container">
-			    	
-				    	<table class="table is-bordered is-striped is-hoverable is-fullwidth">
-				    	
-							<colgroup>
-								<col class="col-export">
-								<col class="col-icon col-public-link">
-								<col class="col-type">
-								<col class="col-date col-available-since">
-								<col class="col-date col-next-update">
-								<col class="col-icon col-download">
-							</colgroup>				    	
-				    	
-					    	<thead>
-					    		<tr>
-					    			<th>export</th>
-					    			<th>public link</th>
-					    			<th>type</th>
-					    			<th>this update</th>
-					    			<th>next update</th>
-					    			<th>frequency</th>
-					    			<th>download</th>
-					    		</tr>
-					    	</thead>
-					    	
-					    	<tbody>
-					    		<tr th:each="task: ${tasks}">
-					    			<td>
-					    				<!-- / *th:href="${'/file/' + task.path}+${task.public?'':'?key='+user.accessKey}" */ -->
-					    				<a th:text="${task.fileName}"
-					    				   th:href="${'/file/' + task.path + '?key='+user.accessKey}" 
-					    				   target="_blank">
-					    				   file name
-					    				</a>
-					    				<div th:text="${task.description}" class="is-size-7" style="max-width:30em">description</div>
-					    			</td>
-					    			<td>
-					    				<a th:if="${task.public}"
-					    				   th:href="${'/file/' + task.path}" 
-					    				   target="_blank">
-					    				   <i class="far fa-link"></i>
-					    				</a>
-					    				<span th:if="${!task.public}"><i class="has-text-grey-lighter fas fa-ban"></i></span>
-					    			</td>
-					    			<td th:text="${task.extension}">
-					    				type
-					    			</td>
-					    			<td>
-					    				<th:block th:if="${task.latestLog != null}" th:text="${task.latestLog.date}">available since
-					    				</th:block>
-					    			</td>
-					    			<td>
-					    				<th:block th:if="${task.latestLog != null}" th:text="${task.nextUpdate}">next update</th:block>
-					    			</td>
-					    			<td>
-					    				<th:block th:text="${task.frequencyAsText}">frequency</th:block>
-					    				<div class="is-size-7 has-text-grey-light">
-					    					since
-					    					<span th:if="${task.startDate != null}" th:text="${task.startDate}" >start date</span>
-					    				</div>
-					    			</td>
-					    			<td>
-					    				<a th:href="${'file/' + task.path + '?download&key=' + user.accessKey}">
-					    					<i class="far fa-cloud-download-alt"></i>
-					    				</a>
-					    			</td>
-					    		</tr>
-							</tbody>	
-							    		
-				    	</table>
+	    	<h1 th:text="${user.name}">User name</h1>
+	    	
+	    	<h2>Metadata Exports</h2>
+	    	
+	    	<table>
+	    	
+				<colgroup>
+					<col class="col-export">
+					<col class="col-icon col-public-link">
+					<col class="col-type">
+					<col class="col-date col-available-since">
+					<col class="col-date col-next-update">
+					<col class="col-icon col-download">
+				</colgroup>				    	
+	    	
+		    	<thead>
+		    		<tr>
+		    			<th>export</th>
+		    			<th>public link</th>
+		    			<th>type</th>
+		    			<th>this update</th>
+		    			<th>next update</th>
+		    			<th>frequency</th>
+		    			<th>download</th>
+		    		</tr>
+		    	</thead>
+		    	
+		    	<tbody>
+		    		<tr th:each="task: ${tasks}">
+		    			<td>
+		    				<!-- / *th:href="${'/file/' + task.path}+${task.public?'':'?key='+user.accessKey}" */ -->
+		    				<a th:text="${task.fileName}"
+		    				   th:href="${'/file/' + task.path + '?key='+user.accessKey}" 
+		    				   target="_blank">
+		    				   file name
+		    				</a>
+		    				<div th:text="${task.description}" class="description">description</div>
+		    			</td>
+		    			<td>
+		    				<a th:if="${task.public}"
+		    				   th:href="${'/file/' + task.path}" 
+		    				   target="_blank">
+		    				   <i class="far fa-link"></i>
+		    				</a>
+		    				<span th:if="${!task.public}"><i class="fas fa-ban"></i></span>
+		    			</td>
+		    			<td th:text="${task.extension}">
+		    				type
+		    			</td>
+		    			<td>
+		    				<th:block th:if="${task.latestLog != null}" th:text="${task.latestLog.date}">available since
+		    				</th:block>
+		    			</td>
+		    			<td>
+		    				<th:block th:if="${task.latestLog != null}" th:text="${task.nextUpdate}">next update</th:block>
+		    			</td>
+		    			<td>
+		    				<th:block th:text="${task.frequencyAsText}">frequency</th:block>
+		    				<div class="date description">
+		    					<span th:if="${task.startDate != null}" th:text="'since ' + ${task.startDate}">start date</span>
+		    				</div>
+		    			</td>
+		    			<td>
+		    				<a th:href="${'file/' + task.path + '?download&key=' + user.accessKey}">
+		    					<i class="far fa-cloud-download-alt"></i>
+		    				</a>
+		    			</td>
+		    		</tr>
+				</tbody>	
+				    		
+	    	</table>
 
-					    <p class="is-size-7">
-					    	All metadata provided are licensed under a 
-					    	<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank">
-					    		Creative Commons Zero 
-					    	</a>
-					    	license (public domain).
-					    </p>
-
-				    </div>	
+		    <p class="small">
+		    	All metadata provided are licensed under a 
+		    	<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank">
+		    		Creative Commons Zero 
+		    	</a>
+		    	license (public domain).
+		    </p>
 				    
-				    
-				</div>
-			
-			</div>
-			
 		</section>				    
 		    
-		<section class="section">
+		<section>
 	
-		   	<div class="container">
-
-		    	<div class="content">
-		    	
-		    		<p>
-						Metadata exports will be available until the next update, overwriting previous versions.
+    		<p>
+				Metadata exports will be available until the next update, overwriting previous versions.
+				<br/>
+				Please schedule your downloads. Expired metadata exports are not kept in archive.
+			</p>
+			
+			<h4>Sharing exports</h4>
+				
+			<ul>
+				<li>	
+					<strong>Links</strong> to exports contain your secret key and can be used to request export files
+					without signing in, to be used for instance for automated requests by external applications that you trust.
+				</li>
+				<li>
+					Do <strong>not</strong> share export links that contain your secret key with third parties or on the Internet. 
+					Instead, if you want an export to be publicly available, ask your Oapen administrator to publish the file. 
+					<br/>
+					<div class="example">
+						<span style="color:red">Do not share links that look like:</span>
 						<br/>
-						Please schedule your downloads. Expired metadata exports are not kept in archive.
-					</p>
-					
-					<h4>Sharing exports</h4>
-						
-					<ul>
-						<li>	
-							<strong>Links</strong> to exports contain your secret key and can be used to request export files
-							without signing in, to be used for instance for automated requests by external applications that you trust.
-						</li>
-						<li>
-							Do <strong>not</strong> share export links that contain your secret key with third parties or on the Internet. 
-							Instead, if you want an export to be publicly available, ask your Oapen administrator to publish the file. 
-							<br/>
-							<div class="is-size-7 has-background-light" style="padding:1em;margin:3px 0;">
-								<span style="color:red">Do not share links that look like:</span>
-								<br/>
-								https://memo.oapen.org/file/initech/tps_report.xml?key=d16163093fce4780b5bf59c40556dc97
-							</div>
-						</li>
-						<li>	
-							<strong>Public links</strong> (<i class="far fa-link"></i>) to exports, if available, need no signing in nor secret key and 
-							are thus accessible for anyone without authentication. These can safely be shared with third parties or on the Internet.
-							<br/>
-							<div class="p-10 is-size-7 has-background-light" style="padding:1em;margin:3px 0;">
-								<span style="color:green">Do share links that look like:</span>
-								<br/>
-								https://memo.oapen.org/file/initech/tps_report.xml
-							</div>
-						</li>
-					</ul>
-					<p>						
-						Questions about these exports? Please contact 
-						<a th:href="${contactEmail.value}"
-						   th:text="${contactEmail.value}">contact@oapen.org</a>
-					</p>
+						https://memo.oapen.org/file/initech/tps_report.xml?key=d16163093fce4780b5bf59c40556dc97
+					</div>
+				</li>
+				<li>	
+					<strong>Public links</strong> (<i class="far fa-link"></i>) to exports, if available, need no signing in nor secret key and 
+					are thus accessible for anyone without authentication. These can safely be shared with third parties or on the Internet.
+					<br/>
+					<div class="example">
+						<span style="color:green">Do share links that look like:</span>
+						<br/>
+						https://memo.oapen.org/file/initech/tps_report.xml
+					</div>
+				</li>
+			</ul>
+			<p>						
+				Questions about these exports? Please contact 
+				<a th:href="${contactEmail.value}"
+				   th:text="${contactEmail.value}">contact@oapen.org</a>
+			</p>
 						  
-		    	</div>
-		    	
-		    </div>		
-		    
 		</section>
 	    
     </main>

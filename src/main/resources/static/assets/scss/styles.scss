@@ -1,33 +1,197 @@
-@import "compass/css3";
-@import "compass";
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 body {
 	background: #fff;
 }
 
-main.oapen-main {
-	min-height: 60vh;
+section {
+	margin: 2em 0;
+	padding: 0 15px;
 }
 
-.content {
+strong {
+	font-weight: bold;
+}
+
+p {
+	margin: 1em 0;
+}
+
+h1 {
+	margin: 1em 0;
+	font-size: 2em;
+	font-weight: bold;
+} 
+
+h2 {
+	margin: 1em 0;
+	font-size: 1.5em;
+	font-weight: bold;
+} 
+
+h3 {
+	margin: 1em 0;
+	font-size: 1.3em;
+	font-weight: bold;
+} 
+
+h4 {
+	margin: 1em 0;
+	font-size: 1.15em;
+	font-weight: bold;
+} 
+
+a {
+	text-decoration: none;
 	
-	ul {
-		max-width: 55em;
+	i + * {
+		display: none;
 	}
+}
+
+
+.small {
+	font-size: .8rem;
+}
+
+.navtop {
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+	padding: 20px;
+	overflow: hidden;
 	
+	:last-child {
+		overflow: hidden;
+	}
+
+	h3 {
+		margin: 0 0 0 1em;
+		white-space: nowrap;
+	}	
+}	
+
+.navmain {
+	
+	height: 50px;
+	padding: 0 20px;
+	background: #000;
+	display: flex;
+	justify-content: space-between;
+
+	li {
+
+		display: inline-block;
+		height: 50px;
+		line-height: 50px;
+		white-space: nowrap;
+		
+		&:hover {
+			background: #444;
+		}
+		
+		a {
+			display: inline-block;
+			padding: 0 2em;
+			color: white;
+			text-decoration: none;
+		}
+	}
+}
+
+
+footer {
+	
+	min-height: 10em;
+	padding: 6em;
+	margin-top: 5em;
+	background: #000;
+	text-align: center;
+	font-size: 80%;
+	
+	&, a {
+		color: white;
+	}
+}	
+
+
+main.content {
+
+	min-height: 60vh;
+	margin: 20px auto;
+	line-height: 1.3;
+	
+	a[target="_blank"]:after {
+		
+	  content: "";
+	  font-family: "Font Awesome 5 Pro";
+	  font-size: 0.85em;
+	  font-style: normal;
+	  margin-left: 1px;
+	  vertical-align: top;
+	}  	
+	
+	section ul {
+		
+		padding-left: 1em;
+		list-style-type: disc;
+		
+		li {
+			margin: 0 0 1em 0;
+			
+			.example {
+				padding:1em;
+				margin:3px 0;
+				background: #f3f3f3;
+				font-size: .85em;
+			}
+		}
+	}
+
 	table {
 
 		margin: 1em 0;
+		width: 100%;
+		background: #fff;
+		
+		tr:nth-child(even) {
+			background: #eee;
+		}
 	
+		th, td {
+			padding: 10px;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #ccc;
+			overflow-wrap: anywhere;
+		}
+
 		thead th {
+			text-align: left;
 			background: #aaa;
 			color: #fff;
+			font-weight: bold;
 		}
 		
 		a[target="_blank"]::after {
 			content: "";	
 		}
 	}	
+	
+	.description {
+		font-size: 80%;
+		max-width: 30em;
+		&.date {
+			color: #aaa;
+		}
+	}
 	
 	.col-export {
 		
@@ -38,87 +202,66 @@ main.oapen-main {
 		}
 	}
 	
+	&.error {
+		
+		max-width: 500px;
+		margin: 2em auto;
+		height: 400px;
+	}
 }
 
-.memo-hdr-title {
-	font-family: "Roboto Condensed";
-	font-size: 1.6em;
-}
-
-.memo-login {
+main.login {
 	
-	table.wrapper {
-		height: 100%;
-		width: 100%;
+	margin: 3em auto;
+	max-width: 500px;
+	
+	h2 {
 		text-align: center;
 	}
-
-	table.wrapper>td {
-		line-height: 2;
-		background: #fff;
-		vertical-align: middle;
-		padding: .5em 1em;
-	}
-
+	
 	form {
 		width: 25em;
-		margin: auto;
-		margin-bottom: 300px;
+		margin: 2em auto 400px;
+		padding: 2em;
 		text-align: center;
-	}
-
-	form div {
 		background: #f6f6f6;
 		border: solid 1px #ccc;
 		box-shadow: 0px 0px 6px 0px #0003;
-		padding: 2em;
-		margin: 2em 0;
-	}
 
-	form table {
-		width: 100%;
-	}
+		table {
 
-	form th {
-		text-align: right;
-	}
+			width: 100%;
+			
+			th {
+				text-align: right;
+			}
 
-	form th,
-	form td {
-		line-height: 1.5;
-		padding: .5em 1em;
-	}
+			th, td {
+				line-height: 1.5;
+				padding: .5em 1em;
+			}
+		}
 
-	img.logo {
-		width: 12em;
-		margin: 50px;
-	}
-
-	.alert {
-		color: red;
-		font-size: 85%;
-		b {color: red; font-weight: bold}
-		br {margin-bottom: .5em;}
-	}
-
-	.success {
-		color: green;
-		font-size: 85%;
-		b {color: green; font-weight: bold}
-		br {margin-bottom: .5em;}
-	}
-
-	h2,
-	h3 {
-		line-height: 1.5;
-		margin: 0;
-		color: #a43735;
-	}
-
-	button {
-		margin-top: 1em;
-		padding: .5em 2em;
-		font-weight: bold;
-	}
-
+		.alert {
+			color: red;
+			font-size: 85%;
+			b {color: red; font-weight: bold}
+			br {margin-bottom: .5em;}
+		}
+	
+		.success {
+			color: green;
+			font-size: 85%;
+			b {color: green; font-weight: bold}
+			br {margin-bottom: .5em;}
+		}
+	
+		button {
+			margin-top: 1em;
+			padding: .5em 2em;
+			font-weight: bold;
+		}
+		
+	}	
 }
+

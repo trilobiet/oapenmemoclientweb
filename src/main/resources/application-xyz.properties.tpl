@@ -15,6 +15,8 @@ spring.jpa.properties.hibernate.format_sql=true
 
 application.filesroot=${user.home}/...
 
+path.customresources=file:/home/oapen/clientweb/profiles/oapen/
+
 #Disable default error page
 server.error.whitelabel.enabled=false 
 

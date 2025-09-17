@@ -1,1 +1,185 @@
-body{background:#fff}main.oapen-main{min-height:60vh}.content ul{max-width:55em}.content table{margin:1em 0}.content table thead th{background:#aaa;color:#fff}.content table a[target="_blank"]::after{content:""}.content .col-export{width:30%}.content .col-export div{margin-top:.5em}.memo-hdr-title{font-family:"Roboto Condensed";font-size:1.6em}.memo-login table.wrapper{height:100%;width:100%;text-align:center}.memo-login table.wrapper>td{line-height:2;background:#fff;vertical-align:middle;padding:.5em 1em}.memo-login form{width:25em;margin:auto;margin-bottom:300px;text-align:center}.memo-login form div{background:#f6f6f6;border:solid 1px #ccc;box-shadow:0px 0px 6px 0px #0003;padding:2em;margin:2em 0}.memo-login form table{width:100%}.memo-login form th{text-align:right}.memo-login form th,.memo-login form td{line-height:1.5;padding:.5em 1em}.memo-login img.logo{width:12em;margin:50px}.memo-login .alert{color:red;font-size:85%}.memo-login .alert b{color:red;font-weight:bold}.memo-login .alert br{margin-bottom:.5em}.memo-login .success{color:green;font-size:85%}.memo-login .success b{color:green;font-weight:bold}.memo-login .success br{margin-bottom:.5em}.memo-login h2,.memo-login h3{line-height:1.5;margin:0;color:#a43735}.memo-login button{margin-top:1em;padding:.5em 2em;font-weight:bold}
+@charset "UTF-8";
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  background: #fff; }
+
+section {
+  margin: 2em 0;
+  padding: 0 15px; }
+
+strong {
+  font-weight: bold; }
+
+p {
+  margin: 1em 0; }
+
+h1 {
+  margin: 1em 0;
+  font-size: 2em;
+  font-weight: bold; }
+
+h2 {
+  margin: 1em 0;
+  font-size: 1.5em;
+  font-weight: bold; }
+
+h3 {
+  margin: 1em 0;
+  font-size: 1.3em;
+  font-weight: bold; }
+
+h4 {
+  margin: 1em 0;
+  font-size: 1.15em;
+  font-weight: bold; }
+
+a {
+  text-decoration: none; }
+  a i + * {
+    display: none; }
+
+.small {
+  font-size: .8rem; }
+
+.navtop {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 20px;
+  overflow: hidden; }
+  .navtop :last-child {
+    overflow: hidden; }
+  .navtop h3 {
+    margin: 0 0 0 1em;
+    white-space: nowrap; }
+
+.navmain {
+  height: 50px;
+  padding: 0 20px;
+  background: #000;
+  display: flex;
+  justify-content: space-between; }
+  .navmain li {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    white-space: nowrap; }
+    .navmain li:hover {
+      background: #444; }
+    .navmain li a {
+      display: inline-block;
+      padding: 0 2em;
+      color: white;
+      text-decoration: none; }
+
+footer {
+  min-height: 10em;
+  padding: 6em;
+  margin-top: 5em;
+  background: #000;
+  text-align: center;
+  font-size: 80%; }
+  footer, footer a {
+    color: white; }
+
+main.content {
+  min-height: 60vh;
+  margin: 20px auto;
+  line-height: 1.3; }
+  main.content a[target="_blank"]:after {
+    content: "";
+    font-family: "Font Awesome 5 Pro";
+    font-size: 0.85em;
+    font-style: normal;
+    margin-left: 1px;
+    vertical-align: top; }
+  main.content section ul {
+    padding-left: 1em;
+    list-style-type: disc; }
+    main.content section ul li {
+      margin: 0 0 1em 0; }
+      main.content section ul li .example {
+        padding: 1em;
+        margin: 3px 0;
+        background: #f3f3f3;
+        font-size: .85em; }
+  main.content table {
+    margin: 1em 0;
+    width: 100%;
+    background: #fff; }
+    main.content table tr:nth-child(even) {
+      background: #eee; }
+    main.content table th, main.content table td {
+      padding: 10px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #ccc;
+      overflow-wrap: anywhere; }
+    main.content table thead th {
+      text-align: left;
+      background: #aaa;
+      color: #fff;
+      font-weight: bold; }
+    main.content table a[target="_blank"]::after {
+      content: ""; }
+  main.content .description {
+    font-size: 80%;
+    max-width: 30em; }
+    main.content .description.date {
+      color: #aaa; }
+  main.content .col-export {
+    width: 30%; }
+    main.content .col-export div {
+      margin-top: .5em; }
+  main.content.error {
+    max-width: 500px;
+    margin: 2em auto;
+    height: 400px; }
+
+main.login {
+  margin: 3em auto;
+  max-width: 500px; }
+  main.login h2 {
+    text-align: center; }
+  main.login form {
+    width: 25em;
+    margin: 2em auto 400px;
+    padding: 2em;
+    text-align: center;
+    background: #f6f6f6;
+    border: solid 1px #ccc;
+    box-shadow: 0px 0px 6px 0px #0003; }
+    main.login form table {
+      width: 100%; }
+      main.login form table th {
+        text-align: right; }
+      main.login form table th, main.login form table td {
+        line-height: 1.5;
+        padding: .5em 1em; }
+    main.login form .alert {
+      color: red;
+      font-size: 85%; }
+      main.login form .alert b {
+        color: red;
+        font-weight: bold; }
+      main.login form .alert br {
+        margin-bottom: .5em; }
+    main.login form .success {
+      color: green;
+      font-size: 85%; }
+      main.login form .success b {
+        color: green;
+        font-weight: bold; }
+      main.login form .success br {
+        margin-bottom: .5em; }
+    main.login form button {
+      margin-top: 1em;
+      padding: .5em 2em;
+      font-weight: bold; }
+
+/*# sourceMappingURL=styles.css.map */
