@@ -62,7 +62,7 @@ The directory targeted in `path.customresources` must contain 3 files:
 This application must be installed as a service.
 
 - Create an installation directory under the user's (`oapen`) home directory;
-- Copy `clientweb-x.y.z.jar` to the user's (`oapen`) home directory;
+- Copy `clientweb-x.y.z.jar` to the installation directory;
 - Copy `src/main/resources/application.properties.tpl` to the installation directory and rename to `application.properties`;
 - Edit `application.properties` (see above 'Configuration');
 - Create a directory `customresources` (see above 'Custom resources');

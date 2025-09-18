@@ -7,36 +7,52 @@
 
 <body>
 
-	<main layout:fragment="content" class="content">
+	<main layout:fragment="content" class="content explainer">
 	
 		<section>
 	
 	    	<h1>Explainer</h1>
 
-			<p>
-				Cogo sagaciter mus si et volutpat. Mattis velit minim ventosus <a
-					href='http://www.greekingmachine.com'>vulputate</a> commodo
-				congue esse. Eu sodales huic tincidunt ac immitto refoveo premo
-				esse. Tellus sagittis eligo vereor valde posuere. Condimentum
-				pulvinar sagittis urna euismod dolore. Secundum dapibus orem nisl
-				quibus sino scisco fatua. Abico populus pecus eum ideo pharetra
-				consectetuer. Sapien natu phasellus class facilisi. Dictumst
-				suscipere esse tellus pagus dolore aliquam. Reprobo qui sociosqu
-				amet condimentum et appellatio.
-			</p>
-			<p>Tortor antehabeo amet ornare nunc. Suspendisse massa ornare
-				quidem class loquor patria fere valde. Nutus phasellus nonummy
-				ante torqueo natoque vicis uxor. Mauris commodo sagittis id risus
-				habitasse. Porta ingenium dictum eget tellus pala lobortis.</p>
-			<p>
-				Neo tego defui nibh suscipit condimentum. Pretium nam ymo distineo
-				congue <a href='http://www.greekingmachine.com'>quidne</a> epulae
-				vulputate. Laoreet class aliquip populus nunc. Aliquip vulpes
-				jugis typicus tincidunt inceptos nostrud. Abigo oppeto felis dui
-				quia. Genitus eros letalis curabitur himenaeos autem probo. Persto
-				gravida eros non utinam. Vereor mus ideo eu magnis. Proprius hac
-				distineo malesuada bene roto.
-			</p>
+			<h2 id="usage">Usage</h2>
+			
+			<p>After signing in, a single page is shown listing the most recent versions of all Task exports for which the 
+				<strong>startDate</strong> has passed. Click on the links to view or download the files.</p>
+				
+			<p>As soon as the Task Manager generates a new report it will be listed here, overwriting any previous version.</p>
+			
+			<p>When a chain icon 🔗 appears in the &#39;public link&#39; column, the associated link is intended for public 
+				use and can be copied safely to other pages on the Internet.</p>
+
+			<h2 id="access-to-resources">Access to resources</h2>
+			
+			<p>Access to this website is only for authorized users. Accounts (username + password) can only be created 
+				and managed by an administrator. Please contact your administrator when you need a new password.</p>
+				
+			<p>Resources (exported files resulting from tasks being run) are available without authentication, but access 
+				to them can be restricted using an access key. Access restrictions on a resource can be used to allow third 
+				party applications knowing the key to request the resource, without making the resource public.</p>
+				
+			<p>Whether access to a resource is restricted is decided by the administrator, who also generates the access keys.</p>
+			
+			<blockquote>
+				<p><strong>
+					<span style="color:red;font-weight:bold">⚠</span>
+					MEMO Customers should be careful not to share the access key nor publish links containing the access key.
+				</strong></p>
+				<p>The access key is defined on the client level, not the task level. Once a client&#39;s key is compromised, 
+					it will grant access to <strong>all</strong> exports for that client.</p>
+			</blockquote>
+			
+			<p>In order to request an access restricted resource, the access key must be appended to the request:</p>
+			
+			<pre><code>https://memo.oapen.org/file/ABC_Corp/a_private_file.json?key=4fdd4c3c0eff4aed8a029d9b9638fe77</code></pre>
+			
+			<p>Not access restricted resources can be requested without an access key:</p>
+			
+			<pre><code>https://memo.oapen.org/file/ABC_Corp/a_public_file.json</code></pre>
+			
+			<p>Attempts to request an access restricted file without a key will be answered with a 
+				<strong>401 Unauthorized</strong> response status code.</p>
 
 		</section>
 	    

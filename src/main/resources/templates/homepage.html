@@ -39,6 +39,9 @@
 		    	</thead>
 		    	
 		    	<tbody>
+					<tr th:if="${tasks.empty}">
+						<td colspan="7" style="text-align:center">No exports</td>
+					</tr>
 		    		<tr th:each="task: ${tasks}">
 		    			<td>
 		    				<!-- / *th:href="${'/file/' + task.path}+${task.public?'':'?key='+user.accessKey}" */ -->

@@ -210,6 +210,24 @@ main.content {
 	}
 }
 
+
+main.explainer {
+	
+	blockquote {
+		padding: 10px 1em;
+		background: #eee;
+		max-width: 55em;		
+	}
+	
+	code {
+		font-family: monospace;
+		padding: 4px 6px;
+		font-size: 80%;
+		background: #eee;
+		color: #444; 
+	}
+}
+
 main.login {
 	
 	margin: 3em auto;
