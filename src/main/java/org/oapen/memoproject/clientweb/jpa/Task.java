@@ -59,9 +59,10 @@ public class Task implements Serializable {
 		return client.getUsername() + "/" + fileName;
 	}
 	
-	
+	/* Here we only want the log of the latest successful task run - clients must not be informed about
+	 * Failed runs, so rl.is_success = 1 */
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinFormula("(SELECT rl.id FROM runlog rl WHERE rl.id_task = id ORDER BY rl.date DESC LIMIT 1)")
+	@JoinFormula("(SELECT rl.id FROM runlog rl WHERE rl.id_task = id AND rl.is_success = 1 ORDER BY rl.date DESC LIMIT 1)")
 	private RunLog latestLog;
 	
 }
